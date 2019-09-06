@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta  http-equiv="Content-Type" Content="text/html; charset="UTF-8">
+    <title>下单地址选择</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+	<script >
+	window.onload=function(){
+	if (localStorage.name !=null){
+		document.getElementById("name01").value=localStorage.name;
+		document.getElementById("tel01").value=localStorage.tel;
+		document.getElementById("bumen").options[0].text=localStorage.bumen;
+		document.getElementById("obj").options[0].text=localStorage.obj;
+		
+		}
+
+	}
+	</script>
+<br />
+<div>
+    <fieldset>
+        <legend>寄件人信息</legend>
+        <form action="" method="post" id="ac_01">
+			<label for="addr-show">姓名：
+                <input type="text" value="" id="name01" name="name_01">
+            </label>
+			<br />
+			<br />
+			<label for="addr-show">电话：
+                <input type="text" value="" id="tel01" name="tel_01">
+            </label>
+			<br />
+			<br />
+			<label for="addr-show">部门：
+                <select id="bumen" name="bumen_01">
+					<option>-请选择部门-</option>
+					<option>财务管理部</option>
+					<option>商务部</option>
+					<option>人力资源部</option>
+					<option>市场医学部</option>
+					<option>销售服务部</option>
+					<option>行政管理部</option>
+					<option>采供保障部</option>
+					<option>院外事业部</option>
+					<option>运营管理部</option>
+					<option>合规部</option>
+					<option>董办</option>
+					<option>其他</option>
+                </select>
+            </label>
+			<br />
+			<br />
+			<label for="addr-show">物品类型：
+                    <select id="obj" name="boj_01">
+					<option>-请选择类型-</option>
+					<option>文件</option>
+					<option>发票</option>
+					<option>生脉胶囊</option>
+					<option>细辛注射液</option>
+					<option>彩页</option>
+					<option>其他物品</option>
+                </select>
+            </label>
+			<br />
+			<br />
+			<label for="addr-show001">地址：
+                <input type="text" value="云南省昆明市呈贡区马金铺街道生物谷街999号云南生物谷药业股份有限公司" id="addr-show03" name="addr_01">
+            </label>
+        </form>
+
+    </fieldset>
+</div>
+<br />
+<table border="1">
+<!--
+  <p>{{info_list}}</p>
+    {% for i in info_list %}
+ 
+        <tr>
+            <td>{{ i.name }}</td>
+            <td>{{ i.tel }}</td>
+            <td>{{ i.full }}</td>
+        </tr>
+ 
+    {% endfor %}
+-->
+</table>
+<div>
+    <fieldset>
+        <legend>收件人信息</legend>
+        <form action="" method="post" id="ac">
+			{% csrf_token %}
+			<label for="addr-show">姓名：
+                <input type="text" value="" id="name" name="name_2">
+            </label>
+			<button id="one" type="button" class="btn met4" onClick="choicsAddr()">选择常用地址</button>
+			<br />
+			
+			<label for="addr-show">电话：
+                <input type="text" value="" id="tel" name="tel_2">
+            </label>
+			<br />
+			
+			<label for="kuai">快递选择：
+                <select id="di" name="di_02">
+					<option> -请选择快递--</option>
+					<option>顺丰</option>
+					<option>中通</option>
+					<option>EMS</option>			
+                </select>
+            <!--省份选择-->
+			<br />
+			<br />
+            <select id="prov" onchange="showCity(this)" >
+                <option>=请选择省份=</option>
+
+            </select>
+
+            <!--城市选择-->
+            <select id="city" onchange="showCountry(this)" >
+                <option >=请选择城市=</option>
+            </select>
+
+            <!--县区选择-->
+            <select id="country" onchange="selecCountry(this)" >
+                <option>=请选择县区=</option>
+            </select>			
+ 
+			<br />
+			<br />
+			<label for="addr-show001">详细街道：
+                <input type="text" value="" id="addr-show02" name="addr_2">
+            </label>
+			
+			<label  for="addr-sho">
+                <input type="hidden" value="" id="addr-show_02" name="addr_full">
+            </label>
+			
+			<br />
+			<br />
+			
+			<button style="display:block;margin:0 auto" type="button" class="two" onClick="showAddr()">下单</button>
+			<!--
+			<button type="button" class="btn met2" onClick="showAddr()">寄中通</button>
+			<button type="button" class="btn met3" onClick="showAddr()">寄EMS</button>
+			-->
+        </form>
+		
+    </fieldset>
+</div>
+
+
+
+
+
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="/static/js/city.js"></script>
+<script src="/static/js/method01.js"></script>
+
+
+</body>
+</html>
